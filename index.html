@@ -1,6 +1,4 @@
 
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,50 +7,47 @@
     <title>Usuários Cadastrados</title>
 </head>
 <body>
-    <h1> Lista de Usuário</h1>
-  <table border=  "1">
-      <thead>
-          <tr>
-              <tr>ID</tr>
-           <tr>Nome</tr>
-           <tr>Email</tr>
-           <tr>Foto</tr>
-          </tr>
-      </thead>
-      <tbody id ="tabelaUsuarios"></tbody>
-  </table>
+    <h1> Listas de Usúarios</h1>
 
-  <script>
-    async function carregarUsuario() {
-        const resposta=await fetch("/usuario");
-        const usuario= await resposta.json();
-
-        const tabela= document.getElementById("tabelaUsuarios");
-        tabela.innerHTML ="";
-         
-        usuarios.forEach(usuario => {
-            tabela.innerHTML += `
+    <table border="1">
+        <thead>
             <tr>
+                <tr>ID</tr>
+                  <tr>Nome</tr>
+                    <tr>Email</tr>
+                      <tr>Foto</tr>
+            </tr>
+        </thead>
+        <tbody id="tabelaUsuarios"></tbody>
+    </table>
+
+    <script>
+        async function carregarUsuarios() {
+            const reposta = await fetch("/usuarios");
+            const usuarios = await reposta.json();
+
+            const tabela = document.getElementById("tabelaUsuarios");
+            tabela.innerHTML ="";
+
+            usuarios.forEach(usuario => {
+                tabela.innerHTML+= `
                 
-                <td>${usuario.id}<td>
-                    <td>${usuario.nome}<td>
-                    <td>${usuario.email}<td>
-                        <td>
-                    ${usuario.foto ? `<img src="/uploud/${usuario.foto}" 
-                    width"60">` : "Sem foto"}
+                <tr>${usuario.id}</td>
+                <td>${usuario.nome}
+                <td>${usuario.email}
+                <td>
+                    ${usuario.foto ? `<img src='/uploads/ ${usuario.foto}
+                    "width"60>` : "sem foto"}
+
                     </td>
-                
-                <tr>
-
-
-
-            `;
-        });
-        
-    }
-  </script>
-
-
-
+                    </tr>
+                `;
+                  
+            });
+        }
+        carregarUsuarios();   
+    </script>
+    <br>
+    <a href="cadastro.html"> Ir para Cadrastro</a>
 </body>
 </html>
